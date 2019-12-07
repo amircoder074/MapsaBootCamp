@@ -4,7 +4,7 @@ import sys
 import threading
 
 IP = '192.168.0.116'
-PORT = 8209
+PORT = 1000
 username = input("Enter your name: ")
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect((IP, PORT))
@@ -17,10 +17,17 @@ def send_message():
         if msg:
             client_socket.send(bytes(username + "->" + msg, 'utf-8'))
 
+def hello() :
+    while True :
+        print('hello world!')
+
+
 
 t1 = threading.Thread(target=send_message)
 t1.start()
 
+t2 = threading.Thread(target=hello)
+t2.start()
 
 while True:
     # #    message = client_socket.recv(1024)
